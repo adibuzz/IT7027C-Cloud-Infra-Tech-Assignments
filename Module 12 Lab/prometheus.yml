@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      # Prometheus will scrape metrics from the node_exporter container on the Docker network
+      - targets: ['node_exporter:9100']
