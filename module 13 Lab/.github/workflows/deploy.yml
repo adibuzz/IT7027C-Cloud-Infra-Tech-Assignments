@@ -1,0 +1,60 @@
+name: "Terraform CI/CD Pipeline"
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform_pipeline:
+    name: "Infrastructure Pipeline"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Start MiniStack
+        run: |
+          echo "Starting MiniStack container..."
+          docker run -d -p 4566:4566 ministackorg/ministack:latest
+
+      - name: Wait for MiniStack
+        run: |
+          echo "Waiting for MiniStack API to be ready..."
+          # MiniStack starts in ~2 seconds, but we poll the health endpoint to be safe
+          until curl -s -f http://localhost:4566/_ministack/health > /dev/null; do
+            sleep 1
+          done
+          echo "MiniStack is ready!"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.0
+
+      - name: Initialize Working Directory
+        run: terraform init
+
+      - name: Validate Syntax
+        run: terraform validate
+
+      - name: Generate Execution Plan
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color
+
+      - name: Execute Deployment
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
+
+      - name: Verify Infrastructure State
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          AWS_ACCESS_KEY_ID: mock_key
+          AWS_SECRET_ACCESS_KEY: mock_secret
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          echo "Verifying bucket exists in runner's MiniStack environment..."
+          aws --endpoint-url=http://localhost:4566 s3 ls | grep "module-13-pipeline-verification-bucket"
