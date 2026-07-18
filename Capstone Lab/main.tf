@@ -61,7 +61,7 @@ resource "local_file" "haproxy_cfg" {
 resource "time_sleep" "wait_for_filesystem_sync" {
 depends_on = [local_file.haproxy_cfg]
 
-create_duration = "5s"
+create_duration = "10s"
 }
 
 # 5. Load Balancer 
