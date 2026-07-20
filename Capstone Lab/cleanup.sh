@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # --- Cleaning terraform deployments
 
 terraform destroy -auto-approve

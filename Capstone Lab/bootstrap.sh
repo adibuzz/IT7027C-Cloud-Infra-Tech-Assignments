@@ -1,4 +1,3 @@
-#!/bin/bash
 echo "Bootstrapping Local Cloud Infrastructure..."
 
 # 1. Start MiniStack (S3) & Vault in the background

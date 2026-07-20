@@ -1,6 +1,5 @@
-#!/bin/bash
-
 # Install Microsoft VS Code
+#!/bin/bash
 
 # Add official rpm repository (published by Microsoft)
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
@@ -29,12 +28,16 @@ docker run hello-world
 
 
 # Install Terraform
-sudo yum install -y yum-utils
+#sudo yum install -y yum-utils
 
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo dnf install -y dnf-utils
+
+#sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo dnf -y install terraform
 
-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
+#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
 
 
 # Aws-ClI install
@@ -46,16 +49,14 @@ sudo ./aws/install
 aws --version
 
 aws configure
-test
-test
-us-east-1
+#test
+#test
+#us-east-1
 
 
 # Install git
-sudo dnf install git-core
+sudo dnf install git-core -y
 
 # Install GitHub CLI
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh
-
-
+sudo dnf install gh -y
