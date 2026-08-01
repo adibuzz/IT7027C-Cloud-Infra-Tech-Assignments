@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Install Microsoft VS Code
 # Add official rpm repository (published by Microsoft)
