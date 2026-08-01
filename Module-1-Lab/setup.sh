@@ -48,3 +48,11 @@ sudo systemctl start docker
 # Run docker as non-previliged user
 sudo usermod -aG docker $USER
 newgrp docker
+
+# Rename all directories in the repository, replacing spaces with hyphens
+find . -depth -type d -name "* *" | while IFS= read -r dir; do
+  parent="$(dirname "$dir")"
+  base="$(basename "$dir")"
+  newbase="${base// /-}"
+  mv -v "$dir" "$parent/$newbase"
+done
