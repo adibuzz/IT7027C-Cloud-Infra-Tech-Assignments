@@ -30,10 +30,10 @@ sudo ./aws/install
 # Verify AWS CLI installation
 aws --version
 # Configure AWS CLI with dummy credentials
-aws configure set aws_access_key_id=test
-aws configure set aws_secret_access_key=test
-aws configure set default.region=us-east-1
-aws configure set default.output=json
+aws configure set aws_access_key_id test
+aws configure set aws_secret_access_key test
+aws configure set default.region us-east-1
+aws configure set default.output json
 
 # Install Docker Engine
 # Install pre-requisites before install docker engine
