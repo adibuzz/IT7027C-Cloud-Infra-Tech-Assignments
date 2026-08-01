@@ -29,7 +29,6 @@ sudo ./aws/install
 # Verify AWS CLI installation
 aws --version
 # Configure AWS CLI with dummy credentials
-aws configure
 aws configure set aws_access_key_id=test
 aws configure set aws_secret_access_key=test
 aws configure set default.region=us-east-1
@@ -43,8 +42,8 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 
 # Install necessary docker packages
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-
+# Start docker service
+sudo systemctl start docker
 # Run docker as non-previliged user
 sudo usermod -aG docker $USER
 newgrp docker
