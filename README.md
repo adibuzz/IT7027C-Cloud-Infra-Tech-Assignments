@@ -5,7 +5,7 @@ This repository contains the complete set of labs and capstone project for the I
 ## Repository Structure
 
 - `Module-1-Lab/` through `Module-14-Lab/`: One lab per module, with Terraform manifests and supporting scripts.
-- `Capstone-Lab/`: Final capstone project demonstrating integrated infrastructure automation with Docker, Vault, LocalStack, HAProxy, and Terraform.
+- `Capstone-Lab/`: Final capstone project demonstrating integrated infrastructure automation with Docker, Vault, MiniStack, HAProxy, and Terraform.
 - `IT7027C-Syllabus-Online.docx` / `IT7027C-Syllabus-Online.pdf`: Course syllabus materials.
 
 ## Prerequisites
@@ -14,7 +14,7 @@ The labs assume a development environment with the following tools:
 
 - Terraform 1.x
 - Docker Engine
-- LocalStack or MiniStack for AWS emulation
+- MiniStack for AWS emulation
 - HashiCorp Vault (or Vault dev server)
 - Kubernetes / Minikube and a valid `~/.kube/config` for Kubernetes labs
 - Bash-compatible shell (WSL2, Git Bash, or Linux shell recommended on Windows)
@@ -46,9 +46,9 @@ Some modules include extra scripts for bootstrapping, validation, or cleanup.
 - Outcome: Creates an Ubuntu container representing raw infrastructure and an NGINX container representing a managed web platform.
 
 ### Module-3-Lab
-- Purpose: Local AWS service emulation with LocalStack.
+- Purpose: Local AWS service emulation with MiniStack.
 - Files: `main.tf`
-- Outcome: Configures the AWS provider to use LocalStack endpoints and provisions an SNS topic, an SQS queue, and a subscription linking them.
+- Outcome: Configures the AWS provider to use MiniStack endpoints and provisions an SNS topic, an SQS queue, and a subscription linking them.
 
 ### Module-4-Lab
 - Purpose: Network segmentation and container multi-tier design.
@@ -73,7 +73,7 @@ Some modules include extra scripts for bootstrapping, validation, or cleanup.
 ### Module-8-Lab
 - Purpose: Terraform remote state backend configuration.
 - Files: `main.tf`
-- Outcome: Configures an S3 remote backend against LocalStack and outputs the current Terraform workspace.
+- Outcome: Configures an S3 remote backend against MiniStack and outputs the current Terraform workspace.
 
 ### Module-9-Lab
 - Purpose: Kubernetes workload provisioning with Terraform.
@@ -96,9 +96,9 @@ Some modules include extra scripts for bootstrapping, validation, or cleanup.
 - Outcome: Deploys Prometheus, Grafana, and node exporter containers, and configures Prometheus to scrape metrics from node exporter.
 
 ### Module-13-Lab
-- Purpose: CI/CD and pipeline verification using LocalStack.
+- Purpose: CI/CD and pipeline verification using MiniStack.
 - Files: `main.tf`, `verify-local.sh`, `.github/`, `.gitignore`
-- Outcome: Creates a LocalStack-backed S3 bucket and validates it using a shell script. Includes GitHub Actions workflow examples.
+- Outcome: Creates a MiniStack-backed S3 bucket and validates it using a shell script. Includes GitHub Actions workflow examples.
 
 ### Module-14-Lab
 - Purpose: Disaster recovery and provider aliasing in Terraform.
@@ -117,7 +117,7 @@ The final capstone lab integrates multiple course concepts into a single local i
 
 ### Capstone Features
 - Docker network creation for production-style infrastructure.
-- LocalStack S3 backend for Terraform state.
+- MiniStack S3 backend for Terraform state.
 - Vault secret injection for database credentials.
 - Dynamic scaling of NGINX web servers via Terraform `count`.
 - HAProxy load balancing with templated configuration.
@@ -137,7 +137,7 @@ bash cleanup.sh
 ## Important Notes
 
 - Many labs use Docker UNIX socket configuration (`unix:///var/run/docker.sock`). On Windows, use WSL2 or a compatible Docker environment.
-- LocalStack and Vault are expected to run on `localhost:4566` and `localhost:8200` respectively for the relevant labs.
+- MiniStack and Vault are expected to run on `localhost:4566` and `localhost:8200` respectively for the relevant labs.
 - Kubernetes labs expect a valid local Kubernetes cluster and kubeconfig file.
 - The repository is best used as a curriculum reference; each module is intentionally isolated to illustrate a single concept.
 
