@@ -2,4 +2,4 @@
 **.tfstate
 **.tfstate.*
 **/.terraform.lock.hcl
-Module-1-Lab/*
+Capstone-Lab/*
