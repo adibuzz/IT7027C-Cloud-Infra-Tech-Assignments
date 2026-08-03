@@ -76,3 +76,8 @@ output "active_production_endpoint" {
   value = var.enable_failover ? aws_s3_bucket_website_configuration.backup_web.website_endpoint : aws_s3_bucket_website_configuration.primary_web.website_endpoint
   description = "The live endpoint handling global enterprise traffic."
 }
+
+# Simulate regional catastrophe by this bash command: aws --endpoint-url=http://localhost:4566 s3 rb s3://company-active-primary-datacenter --force
+
+# After that, instruct Terraform to execute the disaster recovery routing procedure by modifying the runtime state variables: terraform apply -var="enable_failover=true" -auto-approve
+# Observe how the infrastructure reconciles and shifts the active endpoint location natively without dropping global infrastructure context.
