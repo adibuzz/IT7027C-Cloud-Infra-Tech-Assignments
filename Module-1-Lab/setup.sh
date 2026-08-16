@@ -35,6 +35,12 @@ aws configure set aws_secret_access_key test
 aws configure set default.region us-east-1
 aws configure set default.output json
 
+
+# Install Minikube
+# Download and install the latest version of Minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+sudo rpm -Uvh minikube-latest.x86_64.rpm
+
 # Install Docker Engine
 # Install pre-requisites before install docker engine
 sudo dnf install -y dnf-plugins-core
