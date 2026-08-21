@@ -10,7 +10,7 @@ provider "aws" {
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
-  endpoints { s3 = "http://localhost:9000" }
+  endpoints { s3 = "http://localhost:4566" }
 }
 
 resource "aws_s3_bucket" "local_storage" {
