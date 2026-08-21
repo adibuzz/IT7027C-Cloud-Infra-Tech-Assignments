@@ -1,4 +1,8 @@
+# Before running this script, run MiniStack docker containter and then run the following to create a local cloud bucket
+#aws --endpoint-url=http://localhost:4566 s3 mb s3://my-local-cloud-bucket
+
 terraform {
+  
   # 1. Backend block configured for MiniStack S3 (LocalStack)
   backend "s3" {
     bucket                      = "my-local-cloud-bucket"
