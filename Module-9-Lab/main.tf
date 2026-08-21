@@ -60,5 +60,7 @@ type = "NodePort"
 }
 }
 
-
-
+# After applying the Terraform configuration successfully, run the following
+# minikube kubectl get pods,svc
+# minikube service nginx-service -n local-k8s-app --url
+# Browse to the URL received by the previous command
