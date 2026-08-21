@@ -24,9 +24,10 @@ sudo dnf -y install terraform
 # Aws-ClI install # You could potentially use snap for this one, too.
 sudo dnf install -y curl unzip
 # Download and install the AWS CLI version 2
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+sudo dnf -y install awscli2.noarch
+# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+# unzip awscliv2.zip
+# sudo ./aws/install
 # Verify AWS CLI installation
 aws --version
 # Configure AWS CLI with dummy credentials
@@ -44,7 +45,8 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 # Install necessary docker packages
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # Start docker service
+sudo systemctl enable docker --now
 sudo systemctl start docker
-# Run docker as non-previliged user
+# Run docker as non-privileged user
 sudo usermod -aG docker $USER
 newgrp docker
