@@ -61,3 +61,7 @@ resource "aws_lambda_function" "local_lambda" {
   runtime          = "python3.9"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 }
+
+# After successful terraform deployment, run the following to invoke the lamba function_name
+# aws --endpoint-url=http://localhost:4566 lambda invoke --function-name LocalProcessOrder output.txt
+# cat output.txt
