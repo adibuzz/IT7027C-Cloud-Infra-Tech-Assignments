@@ -5,7 +5,7 @@ terraform {
     }
     kubernetes = {
       source = "hashicorp/kubernetes"
-    }
+0    }
     aws = {
       source = "hashicorp/aws"
     }
@@ -23,7 +23,7 @@ provider "kubernetes" {
   config_context = "minikube"
 }
 
-# Provider 3: AWS (MiniStack / LocalStack)
+# Provider 3: AWS (MiniStack)
 provider "aws" {
   access_key                  = "mock_access_key"
   secret_key                  = "mock_secret_key"
@@ -50,7 +50,7 @@ resource "docker_container" "on_prem_cache" {
 }
 
 # Kubernetes Resource
-resource "kubernetes_namespace" "hybrid_ns" {
+resource "kubernetes_namespace_v1" "hybrid_ns" {
   metadata {
     name = "hybrid-dev" # Corrected from "hybrid-cloud-ns"
   }
