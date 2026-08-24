@@ -12,7 +12,6 @@ sudo dnf install -y code
 
 
 # Install Terraform
-
 sudo dnf install -y dnf-utils
 
 # Add official rpm repository (published by Hashicorp)
@@ -28,14 +27,16 @@ sudo dnf -y install awscli2.noarch
 # curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 # unzip awscliv2.zip
 # sudo ./aws/install
+
 # Verify AWS CLI installation
 aws --version
 # Configure AWS CLI with dummy credentials
-aws configure set aws_access_key_id test
-aws configure set aws_secret_access_key test
-aws configure set default.region us-east-1
-aws configure set default.output json
-
+aws configure set aws_access_key_id test --profile IT7027-aws
+aws configure set aws_secret_access_key test --profile IT7027-aws
+aws configure set default.region us-east-1 --profile IT7027-aws
+aws configure set default.output text --profile IT7027-aws
+export AWS_PROFILE=IT7027-aws
+aws configure list
 
 # Install Minikube
 # Download and install the latest version of Minikube
@@ -55,4 +56,5 @@ sudo systemctl enable docker --now
 sudo systemctl start docker
 # Run docker as non-privileged user
 sudo usermod -aG docker $USER
-newgrp docker
+# newgrp docker
+sudo reboot
