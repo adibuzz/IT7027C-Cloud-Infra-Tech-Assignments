@@ -51,10 +51,11 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker
 
 # Install necessary docker packages
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-# Start docker service
-sudo systemctl enable docker --now
+# Enable and start docker service
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 sudo systemctl start docker
 # Run docker as non-privileged user
 sudo usermod -aG docker $USER
-# newgrp docker
+newgrp docker
 sudo reboot
