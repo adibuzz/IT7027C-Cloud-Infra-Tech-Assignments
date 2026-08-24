@@ -73,3 +73,8 @@ resource "aws_iam_role" "mock_role" {
     ]
   })
 }
+
+# After terraform resource deployment
+# for Redis, run docker ps 
+# for the IAM role, run aws --endpoint-url=http://localhost:4566 iam get-role --role-name hybrid_dev_role 
+# for the K8s namespace, run minikube kubectl get namespaces
