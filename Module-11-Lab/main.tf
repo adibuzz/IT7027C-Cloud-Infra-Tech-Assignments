@@ -1,3 +1,5 @@
+# Before starting this lab, please ensure that you need to run MiniStack and Minikube via Docker
+
 terraform {
   required_providers {
     docker = { 
@@ -50,9 +52,9 @@ resource "docker_container" "on_prem_cache" {
 }
 
 # Kubernetes Resource
-resource "kubernetes_namespace_v1" "hybrid_ns" {
+resource "kubernetes_namespace_v1" "hybrid_cloud_ns" {
   metadata {
-    name = "hybrid-dev" # Corrected from "hybrid-cloud-ns"
+    name = "hybrid-cloud-ns" 
   }
 }
 
