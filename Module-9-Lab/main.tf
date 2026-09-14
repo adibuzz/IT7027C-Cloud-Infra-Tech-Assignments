@@ -27,7 +27,7 @@ metadata {
 
 spec {
 
-	replicas = 2
+	replicas = 3
 	selector {match_labels = {app = "WebApp"} }
 	template {
 		metadata {labels = {app = "WebApp"} }
