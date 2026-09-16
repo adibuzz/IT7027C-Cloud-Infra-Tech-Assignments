@@ -5,7 +5,10 @@ provider "docker" { host = "unix:///var/run/docker.sock" }
 
 # Create isolated networks
 resource "docker_network" "public_net" { name = "public_vpc" }
-resource "docker_network" "private_net" { name = "private_vpc" }
+resource "docker_network" "private_net" {
+  name     = "private_vpc"
+  internal = true
+}
 
 # Frontend (Public AND Private)
 resource "docker_image" "nginx" { name = "nginx:alpine" }
@@ -14,8 +17,8 @@ resource "docker_container" "frontend" {
   image = docker_image.nginx.image_id
   networks_advanced { name = docker_network.public_net.name }
 
-	 # Connected to the outside world
-	networks_advanced {name = docker_network.public_net.name}
+	#  # Connected to the outside world
+	# networks_advanced {name = docker_network.public_net.name}
 	# NEW: Connected to the backend database network
 	networks_advanced {name = docker_network.private_net.name}
 }
